@@ -98,11 +98,11 @@ st.header("Customers predicted to Churn by State")
 
 # Read in data of states and their capitol's longitude and latitude
 with open('state_capitol_coordinates.csv', mode='r') as myfile:
-  reader = [rows for rows in csv.reader(myfile)]
-  latitude = {rows[2]:rows[0] for rows in reader}    
+  reader = list(csv.reader(myfile))
+  latitude = {rows[2]:rows[0] for rows in reader}
   longitude = {rows[2]:rows[1] for rows in reader}   
- 
-adjusted_df['latitude']=adjusted_df['State'].map(latitude).astype("int")   
+
+adjusted_df['latitude']=adjusted_df['State'].map(latitude).astype("int")
 adjusted_df['longitude']=adjusted_df['State'].map(longitude).astype("int")
 st.map(adjusted_df, 2)
 
